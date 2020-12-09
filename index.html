@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iron Crusader</title>
+    <link rel="stylesheet" href="assets/styles/style.css">
+</head>
+<body>
+    <div id="frame-game" class="centrar"> 
+        <div id="btn-container">
+            <div class="logo-cont"></div>
+            <div class="intro-name">
+                <form action="#" class="vert-cont form-start" method="GET">
+                    <h2 class="h2-box">Insert your Name</h2>
+                    <input class="form-text" for="btn-start" type="text" id="name-input" name="player" placeholder="Insert your Name!" value="Player" required>
+                    <input class="btn-start animated-bg" type="submit" id="btn-start" value="Start!" required (click)="submitForm()"> </input>
+                </form>
+            </div>
+            <div class="control-cont"></div>
+            
+        </div>
+        
+        <div id="container-death" class="ocultar">
+            <div class="intro-name vert-cont">
+                <h2 class="h2-box">You are Death!</h2>
+                <div class="hor-cont">
+                    <p class="col-izq">Time:</p>
+                    <div class="hor-cont col-der">
+                          <p id="min-death">minutos</p>
+                          <p>:</p>
+                          <p id="sec-death">segundos</p>
+                    </div>
+                </div>
+                <div class="hor-cont">
+                    <p class="col-izq">Kills:</p>
+                    <p id="kills-death" class="col-der">x</p>
+                </div>
+                <div class="hor-cont">
+                    <p class="col-izq">Score:</p>
+                    <p id="score-death" class="col-der">x</p>
+                </div>
+                <button id="btn-continue" class="btn-continue animated-bg">Try Again!</button>
+            </div>
+        </div>
+        
+        <div>
+            <canvas id="game-canvas"></canvas>
+        </div>
+
+        <div id="interface" class="interface animated-bg ocultar">
+
+            <div class="container vert-cont">
+
+                    <h1>Game Stats</h1>
+
+                    <div class="ranking">
+
+                        <div class="col-izq">
+                            <div class="data-names" id="name-id">Name</div>
+                            <div class="data-names">Lifes</div>
+                            <div class="data-names">Time</div>
+                            <div class="data-names">Kills</div>
+                            <div class="data-names">Score</div>
+                            <div class="data-names">Last Score</div>
+                            <div class="data-names">Best Score</div>
+                        </div>
+
+                        <div class="col-der">
+                            <div class="data-stats" id="data-name">IronHacker</div>
+
+                            <div class="hor-cont data-stats">
+                                <div class="life-icon" id="life-01"></div>
+                                <div class="life-icon" id="life-02"></div>
+                                <div class="life-icon" id="life-03"></div>
+                                <div class="life-icon" id="life-04"></div>
+                                <div class="life-icon" id="life-05"></div>
+                            </div>
+
+                            <div class="data-stats">
+                                <div id="data-min">00</div>
+                                <p>:</p>
+                                <div id="data-sec">00</div> 
+                            </div>
+
+                            <div class="data-stats" id="data-kills">0</div> 
+                            <div class="data-stats" id="data-score">0</div>
+                            <div class="data-stats" id="data-last">0</div>
+                            <div class="data-stats" id="data-best">0</div>
+                            
+                        </div>
+                    </div>       
+            </div>
+
+            <div class="container vert-cont">
+
+                <h1>Top 10 Scores</h1>
+                <div class="ranking" id="top-10">
+                    <ul class="col-izq" id="top10names">
+                         <li class="top10-name" id="top1-id-name">Ironhacker</li>
+                         <li class="top10-name" id="top2-id-name">Ironhacker</li>
+                         <li class="top10-name" id="top3-id-name">Ironhacker</li>
+                         <li class="top10-name" id="top4-id-name">Ironhacker</li>
+                         <li class="top10-name" id="top5-id-name">Ironhacker</li>
+                         <li class="top10-name" id="top6-id-name">Ironhacker</li>
+                         <li class="top10-name" id="top7-id-name">Ironhacker</li>
+                         <li class="top10-name" id="top8-id-name">Ironhacker</li>
+                         <li class="top10-name" id="top9-id-name">Ironhacker</li>
+                         <li class="top10-name" id="top10-id-name">Ironhacker</li>
+                    </ul>
+                    <ul class="col-der" id="top10s">
+                        <li class="top10-score" id="top1-id-score">10000</li>
+                        <li class="top10-score" id="top2-id-score">8000</li>
+                        <li class="top10-score" id="top3-id-score">6000</li>
+                        <li class="top10-score" id="top4-id-score">5000</li>
+                        <li class="top10-score" id="top5-id-score">4000</li>
+                        <li class="top10-score" id="top6-id-score">3000</li>
+                        <li class="top10-score" id="top7-id-score">2000</li>
+                        <li class="top10-score" id="top8-id-score">1500</li>
+                        <li class="top10-score" id="top9-id-score">1000</li>
+                        <li class="top10-score" id="top10-id-score">500</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id ="audioBullet" src="assets/audio/Laser Blasts-SoundBible.com-108608437.wav"></audio>
+    <audio id="audioShoot" src="assets/audio/196223__alienxxx__impact-010.wav"></audio>
+    <audio id="audioZombie" src="assets/audio/Mummy Zombie-SoundBible.com-1966938763.wav"></audio>
+    <audio id="audioTurret" src="assets/audio/211957__pgi__mech-step-001.ogg"></audio>
+    <audio id="audioDeath" src="assets/audio/VOXScrm_Wilhelm scream (ID 0477)_BSB.wav"></audio>
+    <audio id="audioHerida" src="assets/audio/342229__christopherderp__hurt-1-male.wav"></audio>
+    <audio id="audioImpacto" src="assets/audio/440777__wcoltd__laser3quick.wav"></audio>
+    <audio id="audioMain" src="assets/audio/Battleship.ogg"></audio>
+    
+    <script src="assets/js/constants.js"></script>
+    <script src="assets/js/models/crono.js"></script>
+    <script src="assets/js/models/ranking.js"></script>
+    <script src="assets/js/models/cuentatras.js"></script>
+    <script src="assets/js/models/turret.js"></script>
+    <script src="assets/js/models/bullet.js"></script>
+    <script src="assets/js/models/zombie.js"></script>
+    <script src="assets/js/models/player.js"></script>
+    <script src="assets/js/models/background.js"></script>
+    <script src="assets/js/models/gameManager.js"></script>
+    <script src="assets/js/index.js"></script>
+</body>
+</html>
